@@ -1,5 +1,8 @@
 # Docker образ сервера Nginx
 
+[ ![Download](https://api.bintray.com/packages/javister/docker/javister%3Ajavister-docker-nginx/images/download.svg) ](https://bintray.com/javister/docker/javister%3Ajavister-docker-nginx/_latestVersion)
+[![Build Status](https://travis-ci.org/javister/javister-docker-nginx.svg?branch=master)](https://travis-ci.org/javister/javister-docker-nginx)
+
 ## Введение
 
 Данный образ базируется на образе [javister-docker-base](https://github.com/javister/javister-docker-nginx)
