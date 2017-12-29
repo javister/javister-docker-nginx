@@ -15,7 +15,7 @@ if [ ! -d "/config/nginx" ]; then
 fi
 
 if [ "${USE_DHPARAM}" == "yes" ] && [ ! -d "/config/nginx/certs/dhparam.pem" ]; then
-    openssl dhparam -out /config/nginx/certs/dhparam.pem 4096
+    openssl dhparam -dsaparam -out /config/nginx/certs/dhparam.pem 4096
 fi
 
 sed --in-place "s/error_log \\/var\\/log\\/nginx\\/error.log;/error_log \\/config\\/nginx\\/log\\/error.log;/g" /etc/nginx/nginx.conf
