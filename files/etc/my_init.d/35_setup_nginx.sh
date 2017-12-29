@@ -14,6 +14,13 @@ if [ ! -d "/config/nginx" ]; then
     chown --recursive system:system /config/nginx
 fi
 
+if [ ! -d "/etc/nginx/certs" ]; then
+    mkdir --parents /config/nginx/certs
+    chmod --recursive 0700 /config/nginx/certs
+
+    openssl dhparam -out /config/nginx/certs/dhparam.pem 4096
+fi
+
 sed --in-place "s/error_log \\/var\\/log\\/nginx\\/error.log;/error_log \\/config\\/nginx\\/log\\/error.log;/g" /etc/nginx/nginx.conf
 sed --in-place "s/access_log.*main;/access_log \\/config\\/nginx\\/log\\/access.log main;/g" /etc/nginx/nginx.conf
 sed --in-place "s/include\\s.*conf.d.*;/include \\/config\\/nginx\\/config\\/conf.d\\/*.conf;/g" /etc/nginx/nginx.conf
