@@ -14,7 +14,7 @@ if [ ! -d "/config/nginx" ]; then
     chown --recursive system:system /config/nginx
 fi
 
-if [ ! -d "/config/nginx/certs/dhparam.pem" ]; then
+if [ "${USE_DHPARAM}" == "yes" ] && [ ! -d "/config/nginx/certs/dhparam.pem" ]; then
     openssl dhparam -out /config/nginx/certs/dhparam.pem 4096
 fi
 
