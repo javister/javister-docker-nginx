@@ -14,10 +14,7 @@ if [ ! -d "/config/nginx" ]; then
     chown --recursive system:system /config/nginx
 fi
 
-if [ ! -d "/etc/nginx/certs" ]; then
-    mkdir --parents /config/nginx/certs
-    chmod --recursive 0700 /config/nginx/certs
-
+if [ ! -d "/config/nginx/certs/dhparam.pem" ]; then
     openssl dhparam -out /config/nginx/certs/dhparam.pem 4096
 fi
 
