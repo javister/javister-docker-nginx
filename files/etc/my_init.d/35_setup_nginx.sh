@@ -9,9 +9,16 @@ if [ ! -d "/config/nginx" ]; then
         /config/nginx/config/conf.d \
         /config/nginx/certs \
         /config/nginx/htpasswd \
-        /config/nginx/config/vhost.d
+        /config/nginx/config/vhost.d \
+        /config/nginx/www
     chmod --recursive 0776 /config/nginx /var/lib/nginx
     chown --recursive system:system /config/nginx
+fi
+
+if [ ! -d "/config/letsencrypt/live" ]; then
+    mkdir --parents /config/letsencrypt/live
+    chmod --recursive 0776 /config/letsencrypt/live
+    chown --recursive system:system /config/letsencrypt/live
 fi
 
 if [ "${USE_DHPARAM}" == "yes" ] && [ ! -f "/config/nginx/certs/dhparam.pem" ]; then
@@ -22,3 +29,6 @@ sed --in-place "s/error_log \\/var\\/log\\/nginx\\/error.log;/error_log \\/confi
 sed --in-place "s/access_log.*main;/access_log \\/config\\/nginx\\/log\\/access.log main;/g" /etc/nginx/nginx.conf
 sed --in-place "s/include\\s.*conf.d.*;/include \\/config\\/nginx\\/config\\/conf.d\\/*.conf;/g" /etc/nginx/nginx.conf
 sed --in-place "s/include\\s.*default.d.*;/include \\/config\\/nginx\\/config\\/default.d\\/*.conf;/g" /etc/nginx/nginx.conf
+# Переставляем корневой каталог в /config/nginx/www, чтобы иметь доступ к каталогу с корневыми ресурсами
+sed --regexp-extended --in-place "s/(\\s+root\\s+)\\/app;/\1\\/config\\/nginx\\/www;/g" /etc/nginx/nginx.conf
+

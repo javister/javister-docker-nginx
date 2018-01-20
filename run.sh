@@ -25,4 +25,4 @@ sync
 
 GID="$(id -g)"
 
-docker run --name nginx -it -p 80:80 --env LETSENCRYPT_EMAIL=vektory79@gmail.com --env PUID=$UID --env PGID=${GID} --rm ${PROXY_ARGS} -v ${WORK_DIR}:/config:rw javister-docker-docker.bintray.io/javister/javister-docker-nginx:2 $@
+docker run --name nginx -it -p 80:80 --env PUID=$UID --env PGID=${GID} --rm ${PROXY_ARGS} -v ${WORK_DIR}:/config:rw javister-docker-docker.bintray.io/javister/javister-docker-nginx:2 $@
