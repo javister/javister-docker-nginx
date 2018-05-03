@@ -11,9 +11,12 @@ if [ ! -d "/config/nginx" ]; then
         /config/nginx/htpasswd \
         /config/nginx/config/vhost.d \
         /config/nginx/www
-    chmod --recursive 0776 /config/nginx /var/lib/nginx
+    chmod --recursive 0776 /var/lib/nginx
     chown --recursive system:system /config/nginx
 fi
+
+chmod --recursive 0776 /var/lib/nginx
+chown --recursive system:system /var/lib/nginx
 
 if [ ! -d "/config/letsencrypt/live" ]; then
     mkdir --parents /config/letsencrypt/live
