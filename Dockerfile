@@ -1,4 +1,4 @@
-FROM javister-docker-docker.bintray.io/javister/javister-docker-nginx-base:2
+FROM javister-docker-docker.bintray.io/javister/javister-docker-nginx-base:2.1
 MAINTAINER Viktor Verbitsky <vektory79@gmail.com>
 
 ENV USE_DHPARAM="no"
